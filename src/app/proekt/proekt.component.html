@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6  " >
+
+      <!-- forma 2-->
+      <div class="jumbotron"  *ngIf="key"  style="width: 42vw;">
+      <h1 class="display-4"> {{userName}}</h1>
+      <p class="lead ">&#9990; {{userPhone}}</p>
+        <button class="btn btn-primary btn-lg" (click)="del(id)" type="submit">Выход</button>
+      <hr class="my-4">
+        <h3 class="mx-auto text-center" style="width: 200px;">Html Викторина</h3>
+        <fieldset class="text-center mx-auto border-top p-2 border-dark " style="width: 200px;">
+          <legend  class="w-auto">Time</legend>
+         <span [ngStyle]="{'color': min > 0? 'black' : 'red'}">{{ hours }} : {{ min }} : {{ sec }}</span>
+        </fieldset>
+
+        <form [formGroup]="form" (ngSubmit)="end()" style="margin-top: 50px;">
+          <div *ngFor="let post of answers" >
+          <h6>{{post.answers1}}</h6>
+
+        <div class="form-check">
+          <input  [attr.disabled]="msg"    [ngClass]="msg? 'form-check-input ' + post.answers2[1] : 'form-check-input  '"  type="radio" formControlName="{{'answers'+ post.id}}" value="{{post.answers2[0]}}" >
+          <label class="form-check-label" >{{post.answers2[0]}} </label>
+        </div>
+
+
+
+        <div class="form-check">
+          <input  [attr.disabled]="msg" [ngClass]="msg? 'form-check-input ' + post.answers3[1] : 'form-check-input'"  type="radio" formControlName="{{'answers'+post.id}}"  value="{{post.answers3[0]}}" >
+          <label class="form-check-label" >{{post.answers3[0]}} </label>
+        </div>
+
+        <div class="form-check">
+          <input  [attr.disabled]="msg" [ngClass]="msg? 'form-check-input ' + post.answers4[1] : 'form-check-input'"   type="radio" formControlName="{{'answers'+post.id}}"  value="{{post.answers4[0]}}" >
+          <label class="form-check-label" >{{post.answers4[0]}} </label>
+        </div>
+        <hr class="my-4">
+          </div>
+           <div class="mx-auto text-center">
+              <button class="btn btn-primary btn-lg" [disabled]="msg" type="submit">ОК</button>
+            </div>
+            </form>
+            <div *ngIf="msg" style="margin-top: 50px" class="card text-center">
+              <div class="card-body">
+                {{msg}}
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+

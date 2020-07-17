@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2" >
+      <form [formGroup]="form" (ngSubmit)="registr()"  *ngIf="!key"  style="width: 44vw;">
+        <fieldset class="text-center mx-auto border p-2 border-dark " >
+          <legend  class="w-auto">Регистрация</legend>
+          <div class="form-row d-flex justify-content-center ">
+            <div class="col-md-4 mb-3">
+              <input type="text"  [ngClass]="form.controls.name.touched ? [!form.controls.name.valid?'form-control is-invalid': 'form-control is-valid'] : 'form-control'"
+                     formControlName="name"  placeholder="Name" >
+              <div class="valid-feedback">
+                Ок!
+              </div>
+              <div class="invalid-feedback">
+                Ошибка!
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" >&#9990;</span>
+                </div>
+                <input type="tel" [ngClass]="form.controls.phone.touched ? [!form.controls.phone.valid?'form-control is-invalid': 'form-control is-valid'] : 'form-control'"
+                       formControlName="phone" placeholder="+374-00-00-00-00"  >
+                <div class="valid-feedback">
+                  Ок!
+                </div>
+                <div class="invalid-feedback">
+                  Ошибка!
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <button class="btn btn-primary"  [disabled]="!form.valid" type="submit">Вход</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <app-proekt *ngIf="key" (onAdd)="key =!key" [key]="key"></app-proekt>
+    </div>
+  </div>
+</div>
